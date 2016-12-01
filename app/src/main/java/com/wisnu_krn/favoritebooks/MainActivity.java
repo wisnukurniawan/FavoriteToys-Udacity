@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import com.wisnu_krn.favoritebooks.utilities.NetworkUtils;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private EditText mSearchBoxEditText;
-    private TextView mSearchResults;
+    private TextView mSearchResultsTextView;
     private TextView mUrlDisplayTextView;
 
     @Override
@@ -22,15 +24,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
-        mSearchResults = (TextView) findViewById(R.id.tv_github_search_results_json);
+        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
         mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
 
     }
 
     public void makeGithubSearchQuery(){
         String githubQuery = mSearchBoxEditText.getText().toString();
+
         URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
         mUrlDisplayTextView.setText(githubSearchUrl.toString());
+        String githubSearchResults = null;
+        try {
+            githubSearchResults = NetworkUtils.getResponseFromHttpUrl(githubSearchUrl);
+            mSearchResultsTextView.setText(githubSearchResults);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
