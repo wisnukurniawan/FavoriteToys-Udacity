@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
         mSearchResults = (TextView) findViewById(R.id.tv_github_search_results_json);
         mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
-
+        //test
     }
 
     @Override
