@@ -1,13 +1,15 @@
 package com.wisnu_krn.favoritebooks;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.wisnu_krn.favoritebooks.utilities.NetworkUtils;
+
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mSearchBoxEditText;
@@ -22,7 +24,13 @@ public class MainActivity extends AppCompatActivity {
         mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
         mSearchResults = (TextView) findViewById(R.id.tv_github_search_results_json);
         mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
-        //test
+
+    }
+
+    public void makeGithubSearchQuery(){
+        String githubQuery = mSearchBoxEditText.getText().toString();
+        URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+        mUrlDisplayTextView.setText(githubSearchUrl.toString());
     }
 
     @Override
@@ -35,9 +43,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemThatWasSelected = item.getItemId();
         if (menuItemThatWasSelected == R.id.action_search){
-            Context context = MainActivity.this;
-            String message = "Search clicked";
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+//            Context context = MainActivity.this;
+//            String message = "Search clicked";
+//            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            makeGithubSearchQuery();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
