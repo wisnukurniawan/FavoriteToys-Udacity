@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin">
+
+    <EditText
+            android:id="@+id/et_search_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="enter a query and then click search"/>
+
+    <TextView
+            android:id="@+id/tv_url_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginTop="8dp"
+            android:text="Click search and your URL will show up here!"/>
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
         <TextView
-                android:id="@+id/tv_toy_name"
+                android:id="@+id/tv_github_search_results_json"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textSize="20sp"/>
+                android:textSize="18sp"
+                android:text="Make a search!"/>
     </ScrollView>
-</FrameLayout>
+
+</LinearLayout>
